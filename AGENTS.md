@@ -126,3 +126,35 @@ just package
 - Write a tiny in-memory mock that implements the same minimal API for local-only unit tests (in addition to Azurite tests).
 - Introduce Python client parity with `uv` and `mise` toolchain.
 - Wire AWS/GCP shims that emulate Azure Append Blob semantics over S3/GCS.
+
+## Debugging with Bun + VS Code
+
+Bun’s runtime exposes a WebKit-Inspector debugger compatible with VS Code (via the Bun extension) and a web debugger at `debug.bun.sh`.
+
+### Prereqs
+- Bun ≥ 1.x (`bun --version`)
+- VS Code “Bun for Visual Studio Code” extension
+- `"sourceMap": true` in `tsconfig.json` (already set)
+
+### Just commands
+- All tests, wait for attach
+  ```bash
+  just debug-tests
+  ```
+
+- Single test file
+  ```bash
+  just debug-tests-file tests/append.azurite.test.ts
+  ```
+
+Both commands start `bun test` with `--inspect-wait=6499`, pausing until the debugger attaches.
+
+### VS Code
+1. Use the "Attach: Bun tests (port 6499)" config to attach.
+2. Set breakpoints in .ts files; run continues on attach.
+
+Tip: If attach is flaky on your platform, open the web debugger by running `bun test --inspect=6499` and following the printed debug.bun.sh link.
+
+### Ports & alternatives
+- Change the inspector port by editing the just recipes: e.g. `--inspect-wait=9230`.
+- For “break on first line” instead of waiting for attach, replace with `--inspect-brk=PORT`.
