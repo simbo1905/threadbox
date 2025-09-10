@@ -158,7 +158,7 @@ sequenceDiagram
   participant Trans as dsl-transpile
   participant Err as E_EMIT error
   Check->>Check: Typecheck author OK
-  Trans->>Trans: Import author; build() -> descriptor
+  Trans->>Trans: Import author build() -> descriptor
   Trans->>Trans: Walk andThen(...) -> not aliasCall
   Trans-->>Err: throw E_EMIT with loc
 ```
