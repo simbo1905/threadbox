@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach: Bun tests (port 6499)",
+      "type": "bun",
+      "request": "attach",
+      "port": 6499
+    },
+    {
+      "name": "Launch current file with Bun",
+      "type": "bun",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
