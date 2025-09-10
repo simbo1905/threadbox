@@ -3,7 +3,7 @@
 ```mermaid
 flowchart LR
   A[Author DSL\nexamples/risk_pipe.ts] --> B[Transpiler\nsrc/agent-dsl/transpile.ts]
-  B -->|emits TS| C[Generated main()\n.tmp/risk_pipe.gen.ts]
+  B -->|emits TS| C[Generated main\n.tmp/risk_pipe.gen.ts]
   C -->|import types| D[Runtime facade\nsrc/runtime]
   C -->|uses| E[Ctx.tools (mocks in tests)]
   F[Typecheck script\nsrc/agent-dsl/check.ts] --> A
