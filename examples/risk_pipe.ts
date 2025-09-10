@@ -1,8 +1,6 @@
 import { program, seq, inParallel, andThen, join, onFailureRetry, recover,
-         alias, useTool, log } from "agent-dsl";
-
-const runShell = alias<(cmd:string, args?:string[])=>Buffer>("runShell");
-const callApi  = alias<(name:string, payload?:unknown)=>Promise<any>>("callApi");
+         useTool, log } from "agent-dsl";
+import { runShell, callApi } from "../src/actions";
 
 export default program("RISK_PIPE", () =>
   seq(
@@ -18,4 +16,3 @@ export default program("RISK_PIPE", () =>
   onFailureRetry({ max: 3, backoffMs: 500 }),
   recover(e => useTool({ kind: "log", level: "error", e }))
 );
-
