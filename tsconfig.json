@@ -8,8 +8,12 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "agent-dsl": ["src/agent-dsl/index.ts"],
+      "runtime": ["src/runtime/index.ts"]
+    }
   },
   "include": ["src", "tests"]
 }
-

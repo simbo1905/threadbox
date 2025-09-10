@@ -78,6 +78,7 @@ BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;
 - `justfile` → Tiny workflow: `clean`, `test`, `package`.
 - `PLAN.md` → Checkbox list of baby steps; only goes as far as the first append/read test.
 
+CRITICAL: There must be no scripts in the `package.json` as this is a polyglot project and `just` and `justfile` must be the ONLY self documenting just file.
 **Justfile Workflow**
 
 - `just test` → Runs Bun tests. Set `AZURE_STORAGE_CONNECTION_STRING` to `UseDevelopmentStorage=true` for local Azurite.

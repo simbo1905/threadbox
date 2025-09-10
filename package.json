@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@azure/storage-blob": "^12.17.0"
+    "@azure/storage-blob": "^12.17.0",
+    "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "typescript": "^5.5.4"
   }
 }
-
