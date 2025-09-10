@@ -5,7 +5,7 @@ flowchart LR
   A[Author DSL\nexamples/risk_pipe.ts] --> B[Transpiler\nsrc/agent-dsl/transpile.ts]
   B -->|emits TS| C[Generated main\n.tmp/risk_pipe.gen.ts]
   C -->|import types| D[Runtime facade\nsrc/runtime]
-  C -->|uses| E[Ctx.tools (mocks in tests)]
+  C -->|uses| E[Ctx.tools mocks in tests]
   F[Typecheck script\nsrc/agent-dsl/check.ts] --> A
   F --> C
   G[Tests\ntests/agent-dsl.spec.ts] --> F
@@ -30,7 +30,7 @@ sequenceDiagram
 
   Test->>Check: typecheck author (examples/risk_pipe.ts)
   Test->>Trans: bun run transpile.ts examples/risk_pipe.ts --out .tmp/...
-  Trans->>A: import author; build() -> descriptor
+  Trans->>Trans: import author; build() -> descriptor
   Trans->>Gen: write generated TS (direct R.* + ctx.tools.*)
   Test->>Check: typecheck generated (.tmp/...)
   Test->>Gen: import { main }
