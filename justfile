@@ -33,3 +33,20 @@ debug-tests-file *ARGS:
     bun install
     AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING:-UseDevelopmentStorage=true} \
     bun test --inspect-wait=6499 --timeout 20000 {{ARGS}}
+
+# --- DSL PoC commands (moved from package.json) ---
+
+# Step 1: Author lint/typecheck
+# usage: just dsl-check-author examples/risk_pipe.ts
+dsl-check-author FILE:
+    bun run src/agent-dsl/check.ts {{FILE}}
+
+# Step 2: Transpile TS→TS
+# usage: just dsl-transpile examples/risk_pipe.ts ./.tmp/risk_pipe.gen.ts
+dsl-transpile IN OUT:
+    bun run src/agent-dsl/transpile.ts {{IN}} --out {{OUT}}
+
+# Step 3: Generated lint/typecheck
+# usage: just dsl-check-generated ./.tmp/risk_pipe.gen.ts
+dsl-check-generated FILE:
+    bun run src/agent-dsl/check.ts {{FILE}}

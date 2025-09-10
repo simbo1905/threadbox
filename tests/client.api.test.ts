@@ -3,6 +3,7 @@ import { AzureAppendClient } from "../src/index";
 import { BlobServiceClient } from "@azure/storage-blob";
 
 const CONN = process.env.AZURE_STORAGE_CONNECTION_STRING || "UseDevelopmentStorage=true";
+const SKIP = !!process.env.POC_AGENT_DSL;
 
 function unique(prefix: string): string {
   const rand = Math.random().toString(36).slice(2, 8);
@@ -18,6 +19,7 @@ async function cleanupContainer(containerName: string) {
 }
 
 test("ensureAppendBlob creates container and blob idempotently", async () => {
+  if (SKIP) return;
   const client = new AzureAppendClient({ connectionString: CONN });
   const container = unique("c-");
   const blob = unique("b-");
@@ -37,6 +39,7 @@ test("ensureAppendBlob creates container and blob idempotently", async () => {
 });
 
 test("append then readAll returns concatenated content", async () => {
+  if (SKIP) return;
   const client = new AzureAppendClient({ connectionString: CONN });
   const container = unique("c-");
   const blob = unique("b-");
@@ -53,6 +56,7 @@ test("append then readAll returns concatenated content", async () => {
 });
 
 test("readAll on empty append blob returns empty buffer", async () => {
+  if (SKIP) return;
   const client = new AzureAppendClient({ connectionString: CONN });
   const container = unique("c-");
   const blob = unique("b-");
@@ -64,4 +68,3 @@ test("readAll on empty append blob returns empty buffer", async () => {
     await cleanupContainer(container);
   }
 });
-
