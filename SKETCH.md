@@ -30,7 +30,7 @@ sequenceDiagram
 
   Test->>Check: typecheck author (examples/risk_pipe.ts)
   Test->>Trans: bun run transpile.ts examples/risk_pipe.ts --out .tmp/...
-  Trans->>Trans: import author; build() -> descriptor
+  Trans->>Trans: import author; build() to descriptor
   Trans->>Gen: write generated TS (direct R.* + ctx.tools.*)
   Test->>Check: typecheck generated (.tmp/...)
   Test->>Gen: import { main }
