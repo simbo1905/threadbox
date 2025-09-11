@@ -1,31 +1,20 @@
-## Running agent-dsl Transpilation and Validation
+## Quick Start Running agent-dsl Transpilation and Validation
 
-Author check: just dsl-check-author examples/risk_pipe.ts
-Transpile: just dsl-transpile examples/risk_pipe.ts ./.tmp/risk_pipe.gen.ts
-Generated check: just dsl-check-generated ./.tmp/risk_pipe.gen.ts
-Tests: just test (if Azurite isn’t running locally, use POC_AGENT_DSL=1 just test to run only the PoC tests)
+```
+# Validate DSL example: 
+just dsl-check-author examples/risk_pipe.ts
 
----
+# Transpile DSL example: 
+just dsl-transpile examples/risk_pipe.ts ./.tmp/risk_pipe.gen.ts
 
-Commands (PoC workflow)
+# Lint and Validate generated agent: 
+just dsl-check-generated ./.tmp/risk_pipe.gen.ts
 
-1) Author lint/typecheck
+# Unit Tests (skipping Azurite blob tests): 
+POC_AGENT_DSL=1 just test
+```
 
-    just dsl-check-author examples/risk_pipe.ts
 
-2) Transpile
-
-    just dsl-transpile examples/risk_pipe.ts ./.tmp/risk_pipe.gen.ts
-
-3) Generated lint/typecheck
-
-    just dsl-check-generated ./.tmp/risk_pipe.gen.ts
-
-4) Run unit tests
-
-    just test
-
----
 ## Deep Dive: Architecture and Flow
 
 ```mermaid
