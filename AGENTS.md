@@ -159,3 +159,12 @@ Tip: If attach is flaky on your platform, open the web debugger by running `bun 
 ### Ports & alternatives
 - Change the inspector port by editing the just recipes: e.g. `--inspect-wait=9230`.
 - For “break on first line” instead of waiting for attach, replace with `--inspect-brk=PORT`.
+
+## Running agent-dsl Transpilation and Validation
+
+Use these commands to validate the typesafe DSL end-to-end:
+
+Author check: just dsl-check-author examples/risk_pipe.ts
+Transpile: just dsl-transpile examples/risk_pipe.ts ./.tmp/risk_pipe.gen.ts
+Generated check: just dsl-check-generated ./.tmp/risk_pipe.gen.ts
+Tests: just test (if Azurite isn’t running locally, use POC_AGENT_DSL=1 just test to run only the PoC tests)
