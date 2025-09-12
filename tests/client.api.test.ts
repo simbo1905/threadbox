@@ -1,3 +1,7 @@
+/**
+ * Unit tests for AzureAppendClient API surface.
+ * Validates ensureAppendBlob, append, readAll operations.
+ */
 import { test, expect } from "bun:test";
 import { AzureAppendClient } from "../src/index";
 import { BlobServiceClient } from "@azure/storage-blob";

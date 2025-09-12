@@ -1,3 +1,7 @@
+/**
+ * Azure Append Blob client wrapper.
+ * Thin pass-through preserving Azure semantics for append-only operations.
+ */
 import { BlobServiceClient, AppendBlobClient, ContainerClient } from "@azure/storage-blob";
 
 export type AppendData = string | Uint8Array | Buffer;
@@ -36,4 +40,3 @@ export class AzureAppendClient {
     return new Uint8Array(buf);
   }
 }
-

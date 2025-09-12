@@ -1,3 +1,7 @@
+/**
+ * Azurite connectivity test - HTTP GET to local blob endpoint.
+ * Prerequisite check before running append tests.
+ */
 import { test, expect } from "bun:test";
 
 const SKIP = !!process.env.POC_AGENT_DSL;

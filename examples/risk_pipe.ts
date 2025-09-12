@@ -1,3 +1,8 @@
+/**
+ * Example DSL pipeline: parallel fetch → risk assessment → log.
+ * Demonstrates seq/par composition with retry policy.
+ * Transpiles to .tmp/risk_pipe.gen.ts
+ */
 import { program, seq, inParallel, andThen, join, onFailureRetry, recover,
          useTool, log } from "agent-dsl";
 import { runShell, callApi } from "../src/actions";

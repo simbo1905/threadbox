@@ -1,3 +1,8 @@
+/**
+ * RxJS abstraction layer - wraps operators for generated code.
+ * R.par() = forkJoin, R.flatMap() = mergeMap/concatMap based on mode.
+ * dummyCtx used when operators don't need real context.
+ */
 import {
   Observable,
   defer,

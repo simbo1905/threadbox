@@ -1,3 +1,7 @@
+/**
+ * Azure Append Blob integration tests against local Azurite.
+ * Round-trip: create container → append "Hello" → append "World" → read back.
+ */
 import { test, expect } from "bun:test";
 import { BlobServiceClient } from "@azure/storage-blob";
 

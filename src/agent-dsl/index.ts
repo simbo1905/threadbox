@@ -1,4 +1,8 @@
-// Minimal authoring surface for the agent DSL (types + tagged descriptors)
+/**
+ * DSL authoring API - descriptor factories and type definitions.
+ * Functions return tagged objects ({ __op: "seq", steps: [...] }) for transpiler consumption.
+ * captureLoc() adds source location for error reporting.
+ */
 
 export type Stream<T> = unknown;
 

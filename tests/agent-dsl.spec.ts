@@ -1,3 +1,8 @@
+/**
+ * End-to-end DSL tests: typecheck → transpile → execute with mocked tools.
+ * Validates ordering, retry behavior, and error recovery.
+ * See README error flow diagram for retry mechanics.
+ */
 import { describe, it, expect } from "bun:test";
 import { mkdirSync, rmSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
