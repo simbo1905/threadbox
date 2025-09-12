@@ -4,6 +4,9 @@
  */
 import { BlobServiceClient, AppendBlobClient, ContainerClient } from "@azure/storage-blob";
 
+// Export UUID Generator
+export { UuidGenerator } from "./id/index.js";
+
 export type AppendData = string | Uint8Array | Buffer;
 
 export class AzureAppendClient {
