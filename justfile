@@ -63,3 +63,15 @@ dsl-transpile IN OUT:
 # usage: just dsl-check-generated ./.tmp/risk_pipe.gen.ts
 dsl-check-generated FILE:
     bun run src/agent-dsl/check.ts {{FILE}}
+
+# --- UUID Generator Tests ---
+
+# Run only the id generator tests
+test-id:
+    bun install
+    bun test tests/id/UuidGenerator.spec.ts --timeout=60000
+
+# Heavy local soak (optional)
+test-id-soak:
+    bun install
+    bun test tests/id/UuidGenerator.spec.ts --timeout=180000 --runInBand
