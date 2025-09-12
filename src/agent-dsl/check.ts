@@ -1,5 +1,10 @@
 #!/usr/bin/env bun
-// Tiny typecheck helper: runs TS diagnostics on provided files.
+/**
+ * Standalone TypeScript validator for DSL files.
+ * Uses TS compiler API to validate author DSL and generated code without emitting JS.
+ * Exit codes: 0 (success), 2 (type errors)
+ * See README sequence diagram: Check -> typecheck author -> typecheck generated
+ */
 import * as ts from "typescript";
 
 const files = process.argv.slice(2);

@@ -1,3 +1,7 @@
+/**
+ * Registry of named tool aliases for DSL use.
+ * These become ctx.tools.* calls in generated code.
+ */
 import { alias } from "agent-dsl";
 
 export const runShell = alias<
@@ -7,4 +11,3 @@ export const runShell = alias<
 export const callApi = alias<
   (name: string, payload?: unknown) => import("rxjs").Observable<any>
 >("callApi");
-

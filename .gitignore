@@ -5,3 +5,5 @@ bun.lockb
 .tsbuildinfo
 .tmp/
 repomix-output.md
+.aider.*
+.vscode/

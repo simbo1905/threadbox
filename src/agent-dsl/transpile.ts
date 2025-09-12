@@ -1,5 +1,9 @@
 #!/usr/bin/env bun
-// Transpiler: import author once, build descriptor tree, and emit direct Rx TypeScript.
+/**
+ * Transpiler: author DSL → executable RxJS TypeScript.
+ * Single import at build time, walks descriptor tree, emits direct R.* calls.
+ * See README sequence: Trans -> import author build() -> write generated TS
+ */
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, relative, resolve } from "node:path";
