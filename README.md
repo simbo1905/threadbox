@@ -1,3 +1,19 @@
+# TypeScript DSL → RxJS Pipelines
+
+A TypeScript DSL for authoring agent pipelines that transpile directly into type‑safe, executable RxJS code — no interpreter at runtime. The DSL focuses on declarative composition, reliability primitives, and testable, observable workflows.
+
+## Project Goals
+
+- Declarative composition: pipelines as clear, typed DSL programs
+- Built‑in resilience: retry, backoff, and recovery policies first‑class
+- Zero interpreter: transpilation emits executable TS that calls the runtime directly
+- Future direction: agents generate DSL programs and orchestrate sub‑agents via the Anthropic client
+- Philosophy: observable, testable, composable, agentic, workflows
+
+## Project Status
+
+Early proof‑of‑concept focused on the DSL → transpilation → generated code pipeline. Supporting pieces (storage shims, Anthropic client) are foundation work and not yet integrated into the DSL execution path.
+
 ## Quick Start Running agent-dsl Transpilation and Validation
 
 ```

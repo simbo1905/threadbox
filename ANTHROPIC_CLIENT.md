@@ -1,5 +1,7 @@
 # Anthropic Client Implementation
 
+Note: This client is foundation work for future agent‑to‑agent communication and orchestration. It is not yet integrated with the DSL transpilation pipeline; today it serves as supporting infrastructure and integration surface area.
+
 This implementation provides a simple TypeScript Anthropic client with TOML configuration support and comprehensive testing.
 
 ## Features
