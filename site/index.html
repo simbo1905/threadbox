@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Threadbox — Agent DSL Technical Report</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height:1.5; margin:2rem auto; max-width:880px; padding:0 1rem; }
+    header { margin-bottom:1.25rem; }
+    h1 { margin:0; font-size:1.75rem; }
+    .links a { display:inline-block; margin-right:1rem; }
+    pre { background:#f6f8fa; padding:1rem; border-radius:8px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Threadbox — Agent DSL</h1>
+    <p>Imperative builder → IR → validation → transpile → load → run. Deterministic, auditable, and budgeted orchestration with a typed blackboard and bounded epochs.</p>
+    <div class="links">
+      <a href="https://github.com/simbo1905/threadbox">GitHub (main)</a>
+      <a href="./agent-dsl.pdf">Technical Report (PDF)</a>
+    </div>
+  </header>
+  <section>
+    <h2>Overview</h2>
+    <p>This project provides a TypeScript DSL that describes topology first (<code>seq</code>, <code>inParallel</code>, <code>andThen</code>, <code>join</code>) and emits an intermediate representation (IR) that we can validate against a registered tool/agent ABI before transpiling to executable code. Agents are just constrained call sites with schema'd IO and budgets; optional blackboard coordination is typed and append-only. Replanning is expressed as bounded epochs with explicit progress measures—no open-ended loops.</p>
+    <p>For background and related engineering patterns see the orchestration and state-machine write-ups (influences and contrasts). </p>
+  </section>
+</body>
+</html>
