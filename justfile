@@ -18,6 +18,19 @@ test:
 package:
     bun build src/index.ts --outdir dist --format esm --target node
 
+# Run only Anthropic client tests (mocked)
+test-anthropic:
+    npm install
+    AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING:-UseDevelopmentStorage=true} \
+    bun test tests/anthropic-client.test.ts --timeout 20000
+
+# Run Anthropic integration tests with real API (requires ANTHROPIC_API_KEY)
+test-anthropic-integration:
+    npm install
+    ANTHROPIC_INTEGRATION_TESTS=true \
+    AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING:-UseDevelopmentStorage=true} \
+    bun test tests/anthropic-integration.test.ts --timeout 30000
+
 # --- Debugging ---
 
 # Debug ALL tests: starts Bun’s inspector and waits for the debugger to attach
