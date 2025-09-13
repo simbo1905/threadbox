@@ -132,7 +132,8 @@ test("AnthropicClient creates messages successfully", async () => {
   expect(response.id).toBe('msg_01ABC123');
   expect(response.content[0]).toEqual({
     type: 'text',
-    text: 'Hello! This is a mock response from Claude.'
+    text: 'Hello! This is a mock response from Claude.',
+    citations: null
   });
   expect(response.usage.input_tokens).toBe(10);
   expect(response.usage.output_tokens).toBe(25);

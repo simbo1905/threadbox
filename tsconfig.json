@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
-    "module": "ES2020",
+    "target": "ES2022",
+    "module": "ES2022",
     "moduleResolution": "Bundler",
     "strict": true,
     "esModuleInterop": true,
@@ -10,6 +10,7 @@
     "outDir": "dist",
     "sourceMap": true,
     "baseUrl": ".",
+    "types": ["bun-types"],
     "paths": {
       "agent-dsl": ["src/agent-dsl/index.ts"],
       "runtime": ["src/runtime/index.ts"]
