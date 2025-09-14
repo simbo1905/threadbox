@@ -4,7 +4,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach } from "bun:test";
-import { UuidGenerator } from "../../src/id/UuidGenerator.js";
+import { UuidGenerator } from "../../src/uuid/UuidGenerator.js";
 
 /**
  * Helper class to mock Date.now() for deterministic testing

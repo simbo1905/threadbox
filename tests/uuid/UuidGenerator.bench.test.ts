@@ -8,7 +8,7 @@
  */
 
 import { describe, it, expect } from "bun:test";
-import { UuidGenerator } from "../../src/id/UuidGenerator.js";
+import { UuidGenerator } from "../../src/uuid/UuidGenerator.js";
 
 const SKIP_BENCHMARKS = !process.env.UUID_BENCHMARK_TESTS;
 

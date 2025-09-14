@@ -9,7 +9,7 @@
 
 import { describe, it, expect } from "bun:test";
 import { randomBytes } from 'crypto';
-import { UuidGenerator } from "../../src/id/UuidGenerator.js";
+import { UuidGenerator } from "../../src/uuid/UuidGenerator.js";
 
 const SKIP_RANDOMNESS_TESTS = !process.env.UUID_RANDOMNESS_TESTS;
 
