@@ -26,7 +26,59 @@ A registry maintains id/kind/version, IO schemas, capabilities; the loader wires
 \section{Observability and Durability}
 Each action appends start/finish/failure events; policies emit retry/backoff; blackboard writes are immutable entries for replay and provenance.
 \section{Example}
-The \emph{risk pipeline} shows parallel fetch, assessment, and logging with retry/recover—topology-first, then validated/transpiled.
+The \emph{PDF processing pipeline} demonstrates a three-stage document transformation workflow using the agent DSL. The pipeline: (1) extracts individual pages from a PDF document, (2) applies text cleanup and enhancement to each page in parallel, and (3) joins the processed pages into a cohesive text document. This showcases sequential composition with parallel processing, error recovery, and the typed blackboard for intermediate state management.
+
+\begin{lstlisting}[language=JavaScript, basicstyle=\ttfamily\small, frame=single]
+import { program, seq, inParallel, andThen, join, 
+         onFailureRetry, recover, useTool, log } from "agent-dsl";
+import { callApi } from "../src/actions";
+
+export default program("PDF_PROCESSING", () =>
+  seq(
+    // Stage 1: Extract PDF into individual page files
+    callApi("extractPdfPages", { inputPath: "document.pdf" }),
+    
+    // Stage 2: Process each page in parallel
+    andThen(({ pages }) => 
+      inParallel(
+        ...pages.map(page => 
+          seq(
+            callApi("extractTextFromPage", { page }),
+            andThen(({ rawText }) => 
+              callApi("tidyText", { 
+                text: rawText,
+                operations: ["removeExtraWhitespace", 
+                           "fixLineBreaks", 
+                           "correctOCRErrors"]
+              })
+            )
+          )
+        )
+      )
+    ),
+    
+    // Stage 3: Join processed pages into final document
+    andThen((processedPages) => 
+      callApi("joinTextPages", { 
+        pages: processedPages,
+        format: "markdown",
+        addPageBreaks: true
+      })
+    ),
+    
+    log("pdf-processing-complete")
+  )
+).with(
+  onFailureRetry({ max: 2, backoffMs: 1000 }),
+  recover(e => useTool({ 
+    kind: "log", 
+    level: "error", 
+    message: `PDF processing failed: \${e.message}\` 
+  }))
+);
+\end{lstlisting}
+
+This example illustrates the DSL's ability to compose complex workflows with clear separation of concerns, automatic parallelization where beneficial, and robust error handling throughout the pipeline.
 \section{Status}
 Early PoC: builder$\rightarrow$IR$\rightarrow$validator$\rightarrow$transpiler prioritized; storage/connectors are supporting infra.
 \section{Conclusion}
