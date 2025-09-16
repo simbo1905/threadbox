@@ -64,6 +64,22 @@ dsl-transpile IN OUT:
 dsl-check-generated FILE:
     bun run src/agent-dsl/check.ts {{FILE}}
 
+# --- Local macOS build targets (requires: brew install tectonic) ---
+
+# Build LaTeX paper to PDF
+paper:
+	tectonic -X compile papers/agent-dsl.tex --outdir papers
+
+# Build static site (includes PDF)
+site: paper
+	mkdir -p site
+	cp papers/agent-dsl.pdf site/agent-dsl.pdf
+	# leave site/index.html as-is
+
+# Build complete site for local preview
+build-site: site
+	@echo "Site ready in ./site (open index.html)."
+
 # --- UUID Generator Tests ---
 
 # Run only the uuid generator tests
@@ -87,3 +103,4 @@ bench-id:
 analyze-uuid-randomness:
     bun install
     bun test tests/uuid/UuidGenerator.randomness.test.ts --timeout=60000
+
