@@ -31,7 +31,7 @@ The \emph{PDF processing pipeline} demonstrates a three-stage document transform
 \begin{lstlisting}[language=JavaScript, basicstyle=\ttfamily\small, frame=single]
 import { program, seq, inParallel, andThen, join, 
          onFailureRetry, recover, useTool, log } from "agent-dsl";
-import { callApi, runShell } from "../src/actions";
+import { callApi } from "../src/actions";
 
 export default program("PDF_PROCESSING", () =>
   seq(
@@ -73,7 +73,7 @@ export default program("PDF_PROCESSING", () =>
   recover(e => useTool({ 
     kind: "log", 
     level: "error", 
-    message: `PDF processing failed: ${e.message}` 
+    message: `PDF processing failed: \${e.message}\` 
   }))
 );
 \end{lstlisting}
