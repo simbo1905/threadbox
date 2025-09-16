@@ -29,6 +29,8 @@ If using Homebrew instead: `brew install bun just`.
 - Transpile: `just dsl-transpile examples/risk_pipe.ts ./.tmp/risk_pipe.gen.ts`
 - Generated check: `just dsl-check-generated ./.tmp/risk_pipe.gen.ts`
 - Tests: `just test` (set `POC_AGENT_DSL=1` to run only PoC tests)
+- UUID benchmarks: `UUID_BENCHMARK_TESTS=1 just bench-id` (intensive performance tests)
+- UUID randomness analysis: `UUID_RANDOMNESS_TESTS=1 just analyze-id-randomness` (intensive crypto tests)
 
 **Debugging with Bun + VS Code**
 
@@ -65,5 +67,14 @@ Ports & alternatives
 **Supporting Infrastructure (Optional)**
 
 An Azure Append Blob client and Azurite setup exist to support future storage operations and end‑to‑end demos. They are not the primary focus of the DSL pipeline. If you need Azurite to run blob‑related tests locally, consult the test files for connection string usage (`AZURE_STORAGE_CONNECTION_STRING=UseDevelopmentStorage=true`).
+
+**Intensive Tests (Opt-in)**
+
+Some tests are computationally intensive and disabled by default:
+- **UUID Benchmark Tests**: Performance validation (500K+ UUIDs/second claims). Enable with `UUID_BENCHMARK_TESTS=1`
+- **UUID Randomness Tests**: Cryptographic randomness quality analysis. Enable with `UUID_RANDOMNESS_TESTS=1`
+- **PoC Tests**: Core DSL pipeline tests only. Enable with `POC_AGENT_DSL=1`
+
+These flags follow the same pattern as `AZURE_STORAGE_CONNECTION_STRING` - set the environment variable to enable specific test suites.
 
 CRITICAL: There must be no scripts in `package.json`. `just` and the `justfile` are the single source of truth for tasks.

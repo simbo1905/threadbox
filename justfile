@@ -79,3 +79,28 @@ site: paper
 # Build complete site for local preview
 build-site: site
 	@echo "Site ready in ./site (open index.html)."
+
+# --- UUID Generator Tests ---
+
+# Run only the uuid generator tests
+test-id:
+    bun install
+    bun test tests/uuid/UuidGenerator.spec.ts --timeout=60000
+
+# Heavy local soak (optional)
+test-id-soak:
+    bun install
+    bun test tests/uuid/UuidGenerator.spec.ts --timeout=180000 --runInBand
+
+# Benchmark UUID generation performance (intensive - requires UUID_BENCHMARK_TESTS=1)
+# Usage: UUID_BENCHMARK_TESTS=1 just bench-id
+bench-id:
+    bun install
+    bun test tests/uuid/UuidGenerator.bench.test.ts --timeout=60000
+
+# Analyze UUID randomness quality (intensive - requires UUID_RANDOMNESS_TESTS=1)  
+# Usage: UUID_RANDOMNESS_TESTS=1 just analyze-uuid-randomness
+analyze-uuid-randomness:
+    bun install
+    bun test tests/uuid/UuidGenerator.randomness.test.ts --timeout=60000
+

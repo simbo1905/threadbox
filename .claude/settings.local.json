@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(just:*)",
+      "Bash(UUID_BENCHMARK_TESTS=1 just bench-id)",
+      "Bash(UUID_RANDOMNESS_TESTS=1 just analyze-id-randomness)",
+      "Bash(gh issue create:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh pr view:*)",
+      "Bash(git mv:*)",
+      "Bash(find:*)",
+      "Bash(sed:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
